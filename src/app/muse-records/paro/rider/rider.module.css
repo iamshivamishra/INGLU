@@ -1,0 +1,940 @@
+/*
+  rider.module.css — PARO Rider Page
+  Matches the EPK dark theme exactly.
+*/
+
+/* ── Root ── */
+.riderRoot {
+  --epk-fire: #ff3d00;
+  --epk-ember: #ff6b00;
+  --epk-gold: #ffb300;
+  --epk-ink: #060605;
+  --epk-coal: #0e0e0c;
+  --epk-char: #161614;
+  --epk-ash: #252523;
+  --epk-smoke: #3a3a38;
+  --epk-mist: #888880;
+  --epk-paper: #f2eee6;
+  --r-tech: #00c4b4;
+  --r-hosp: #ffb300;
+  --r-travel: #7b6fff;
+
+  background: var(--epk-ink);
+  color: var(--epk-paper);
+  font-family: var(--font-condensed), "Barlow Condensed", sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+.riderRoot::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ── TICKER ── */
+.tickerWrap {
+  background: var(--epk-fire);
+  overflow: hidden;
+  white-space: nowrap;
+  height: 34px;
+  display: flex;
+  align-items: center;
+}
+.tickerInner {
+  display: inline-flex;
+  animation: marquee 32s linear infinite;
+}
+.tickerItem {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #000;
+  padding: 0 32px;
+  font-weight: 500;
+}
+.tickerDot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: 0 8px;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(6, 6, 5, 0.94);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--epk-ash);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 58px;
+  animation: slideDown 0.6s 0.1s ease both;
+}
+.navLogo {
+  font-family: var(--font-serif), "Playfair Display", serif;
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--epk-fire);
+  letter-spacing: -1px;
+  text-decoration: none;
+}
+.navLinks {
+  display: flex;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.navLinks a {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+  color: var(--epk-paper);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.navLinks a:hover {
+  color: var(--epk-paper);
+  background: var(--epk-char);
+}
+.navLinkActive {
+  color: var(--epk-paper) !important;
+  background: var(--epk-char) !important;
+}
+.navBadge {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  color: #000;
+  background: var(--epk-fire);
+  padding: 5px 14px;
+  border-radius: 2px;
+  letter-spacing: 2px;
+  text-decoration: none;
+}
+
+/* ── PAGE HERO ── */
+.pageHero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #050a09 0%, var(--epk-ink) 100%);
+  padding: 80px 48px 64px;
+  border-bottom: 1px solid var(--epk-ash);
+}
+.pageHero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 60% 80% at 5% 50%,
+      rgba(0, 196, 180, 0.07) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 40% 60% at 95% 30%,
+      rgba(255, 179, 0, 0.05) 0%,
+      transparent 60%
+    );
+  pointer-events: none;
+}
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 196, 180, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 196, 180, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    black 30%,
+    black 80%,
+    transparent 100%
+  );
+}
+.pageEyebrow {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: var(--r-tech);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.15s ease both;
+  position: relative;
+  z-index: 1;
+}
+.liveDot {
+  width: 7px;
+  height: 7px;
+  background: var(--epk-fire);
+  border-radius: 50%;
+  animation: pulseDot 2s infinite;
+}
+.pageTitle {
+  font-family: var(--font-serif), "Playfair Display", serif;
+  font-size: clamp(44px, 8vw, 88px);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -3px;
+  color: var(--epk-paper);
+  opacity: 0;
+  animation: fadeUp 0.8s 0.25s ease both;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+.pageTitle span {
+  color: var(--r-tech);
+}
+.pageSub {
+  font-size: 18px;
+  color: var(--epk-mist);
+  max-width: 620px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s ease both;
+  position: relative;
+  z-index: 1;
+}
+.pageSub strong {
+  color: var(--epk-paper);
+}
+.heroTabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.55s ease both;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.htab {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 8px 20px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+.htabTech {
+  background: rgba(0, 196, 180, 0.12);
+  color: var(--r-tech);
+  border-color: rgba(0, 196, 180, 0.3);
+}
+.htabHosp {
+  background: rgba(255, 179, 0, 0.1);
+  color: var(--r-hosp);
+  border-color: rgba(255, 179, 0, 0.25);
+}
+.htabTravel {
+  background: rgba(123, 111, 255, 0.1);
+  color: var(--r-travel);
+  border-color: rgba(123, 111, 255, 0.25);
+}
+.htab:hover {
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+}
+
+/* ── DIVIDER ── */
+.fullDivider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--epk-ash) 20%,
+    var(--epk-ash) 80%,
+    transparent
+  );
+  margin: 0 48px;
+}
+
+/* ── SECTIONS ── */
+.riderSection {
+  padding: 80px 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.sectionLabel {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.sectionLabel::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--epk-ash), transparent);
+}
+.sectionLabelTech {
+  color: var(--r-tech);
+}
+.sectionLabelHosp {
+  color: var(--r-hosp);
+}
+.sectionLabelTravel {
+  color: var(--r-travel);
+}
+
+/* ── RIDER ITEMS ── */
+.riderGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.riderItem {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 20px;
+  background: var(--epk-char);
+  border: 1px solid var(--epk-ash);
+  border-radius: 8px;
+  padding: 20px 24px;
+  transition:
+    border-color 0.2s,
+    transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.riderItem::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+}
+.techItem::before {
+  background: var(--r-tech);
+}
+.hospItem::before {
+  background: var(--r-hosp);
+}
+.travelItem::before {
+  background: var(--r-travel);
+}
+.riderItem:hover {
+  transform: translateX(4px);
+}
+.techItem:hover {
+  border-color: rgba(0, 196, 180, 0.35);
+}
+.hospItem:hover {
+  border-color: rgba(255, 179, 0, 0.35);
+}
+.travelItem:hover {
+  border-color: rgba(123, 111, 255, 0.35);
+}
+
+.itemNum {
+  font-family: var(--font-serif), "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 900;
+  opacity: 0.12;
+  line-height: 1;
+}
+.techNum {
+  color: var(--r-tech);
+}
+.hospNum {
+  color: var(--r-hosp);
+}
+.travelNum {
+  color: var(--r-travel);
+}
+
+.itemTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--epk-paper);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.itemDetail {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 10px;
+  color: var(--epk-paper);
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+.itemBadge {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.badgeCritical {
+  background: rgba(255, 61, 0, 0.18);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 61, 0, 0.4);
+}
+.badgeRequired {
+  background: rgba(255, 61, 0, 0.1);
+  color: var(--epk-fire);
+  border: 1px solid rgba(255, 61, 0, 0.25);
+}
+.badgePreferred {
+  background: rgba(255, 179, 0, 0.1);
+  color: var(--epk-gold);
+  border: 1px solid rgba(255, 179, 0, 0.25);
+}
+.badgeComfort {
+  background: rgba(0, 196, 180, 0.08);
+  color: var(--r-tech);
+  border: 1px solid rgba(0, 196, 180, 0.2);
+}
+
+/* ── SUB HEADERS ── */
+.subHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 40px 0 20px;
+}
+.subIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.subIconStage {
+  background: rgba(255, 61, 0, 0.12);
+}
+.subIconGreen {
+  background: rgba(0, 196, 180, 0.1);
+}
+.subIconTbl {
+  background: rgba(123, 111, 255, 0.1);
+}
+.subTitleH {
+  font-family: var(--font-serif), "Playfair Display", serif;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+}
+.hospT {
+  color: var(--r-hosp);
+}
+.travelT {
+  color: var(--r-travel);
+}
+.subCount {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--epk-paper);
+  margin-left: auto;
+}
+
+/* ── STAGE DIAGRAM ── */
+.stageDiagram {
+  background: var(--epk-char);
+  border: 1px solid var(--epk-ash);
+  border-radius: 12px;
+  padding: 36px 40px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.stageDiagram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 50% at 50% 0%,
+    rgba(0, 196, 180, 0.05),
+    transparent
+  );
+  pointer-events: none;
+}
+.stageLabelTop {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: var(--epk-paper);
+  text-align: center;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.stageBox {
+  border: 2px solid rgba(0, 196, 180, 0.25);
+  border-radius: 8px;
+  background: rgba(0, 196, 180, 0.03);
+  padding: 24px 28px;
+}
+.stageRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.stageCentre {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.stageMics {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.stageIems {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+.stageElement {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.seMic {
+  background: rgba(255, 61, 0, 0.12);
+  color: var(--epk-fire);
+  border: 1px solid rgba(255, 61, 0, 0.25);
+}
+.seMonitor {
+  background: rgba(0, 196, 180, 0.1);
+  color: var(--r-tech);
+  border: 1px solid rgba(0, 196, 180, 0.25);
+}
+.seIem {
+  background: rgba(255, 179, 0, 0.08);
+  color: var(--epk-gold);
+  border: 1px solid rgba(255, 179, 0, 0.2);
+}
+.seLed {
+  background: rgba(123, 111, 255, 0.1);
+  color: var(--r-travel);
+  border: 1px solid rgba(123, 111, 255, 0.25);
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  margin-bottom: 20px;
+}
+.sePa {
+  background: rgba(0, 196, 180, 0.08);
+  color: var(--r-tech);
+  border: 1px solid rgba(0, 196, 180, 0.2);
+}
+.stageAudience {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--epk-paper);
+  border: 1px solid var(--epk-ash);
+}
+.stagePaRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 4px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.stagePaGroup {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.stageLabelBottom {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 2.5px;
+  color: var(--epk-paper);
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.07);
+}
+
+/* ── SPEC TABLE ── */
+.specTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+}
+.specTable th {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 3px;
+  color: var(--epk-paper);
+  text-align: left;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--epk-ash);
+  text-transform: uppercase;
+}
+.specTable td {
+  padding: 12px 0;
+  font-size: 14px;
+  color: var(--epk-paper);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: top;
+}
+.specTable td:first-child {
+  font-weight: 600;
+  font-size: 15px;
+  padding-right: 24px;
+}
+.specTable tr:last-child td {
+  border-bottom: none;
+}
+.specDetail {
+  color: var(--epk-mist) !important;
+  font-size: 13px !important;
+}
+.specQty {
+  color: var(--r-tech) !important;
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 11px !important;
+  white-space: nowrap;
+}
+
+/* ── TEAM GRID ── */
+.teamGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+.teamCard {
+  background: var(--epk-char);
+  border: 1px solid var(--epk-ash);
+  border-top: 2px solid var(--r-travel);
+  border-radius: 0 0 8px 8px;
+  padding: 20px 22px;
+}
+.teamCardNum {
+  font-family: var(--font-serif), "Playfair Display", serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--r-travel);
+  opacity: 0.15;
+  line-height: 1;
+}
+.teamCardTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--epk-paper);
+  margin-top: 8px;
+}
+.teamCardDetail {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  color: var(--epk-paper);
+  margin-top: 6px;
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+
+/* ── NOTICE ── */
+.noticeBox {
+  background: rgba(255, 179, 0, 0.06);
+  border: 1px solid rgba(255, 179, 0, 0.2);
+  border-left: 3px solid var(--epk-gold);
+  border-radius: 0 8px 8px 0;
+  padding: 22px 26px;
+  margin-top: 48px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--epk-paper);
+}
+.noticeBox strong {
+  color: var(--epk-paper);
+  font-weight: 700;
+}
+.noticeHead {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--epk-gold);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.noticeContacts {
+  margin-top: 16px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.noticeContacts span {
+  font-family: var(--font-mono), "DM Mono", monospace;
+  font-size: 10px;
+  color: var(--epk-gold);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.65s ease;
+}
+.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* stagger delays */
+.d0 {
+  transition-delay: 0s;
+}
+.d1 {
+  transition-delay: 0.1s;
+}
+.d2 {
+  transition-delay: 0.2s;
+}
+.d3 {
+  transition-delay: 0.3s;
+}
+.d4 {
+  transition-delay: 0.4s;
+}
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes pulseDot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 61, 0, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 61, 0, 0);
+  }
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  /* Nav */
+  .nav {
+    padding: 0 16px;
+    height: 52px;
+  }
+  .navLinks {
+    display: none;
+  }
+  .navLogo {
+    font-size: 20px;
+  }
+  .navBadge {
+    font-size: 8px;
+    padding: 4px 10px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Hero */
+  .pageHero {
+    padding: 52px 16px 40px;
+  }
+  .pageTitle {
+    font-size: clamp(36px, 12vw, 56px);
+    letter-spacing: -2px;
+    line-height: 0.95;
+  }
+  .pageSub {
+    font-size: 15px;
+  }
+  .heroTabs {
+    gap: 8px;
+    margin-top: 28px;
+  }
+  .htab {
+    font-size: 9px;
+    padding: 6px 12px;
+    letter-spacing: 1.5px;
+  }
+
+  /* Layout */
+  .fullDivider {
+    margin: 0 16px;
+  }
+  .riderSection {
+    padding: 48px 16px;
+  }
+
+  /* Rider items — drop badge col, collapse num */
+  .riderItem {
+    grid-template-columns: 32px 1fr;
+    gap: 14px;
+    padding: 16px 14px;
+  }
+  .itemBadge {
+    display: none;
+  }
+  .itemNum {
+    font-size: 22px;
+  }
+  .itemTitle {
+    font-size: 15px;
+  }
+  .itemDetail {
+    font-size: 9px;
+  }
+
+  /* Stage diagram */
+  .stageDiagram {
+    padding: 20px 14px;
+  }
+  .stageBox {
+    padding: 16px 12px;
+  }
+  .stageRow {
+    justify-content: center;
+    gap: 10px;
+  }
+  .seMonitor {
+    display: none;
+  } /* hide monitors on mobile to avoid overflow */
+  .stageMics {
+    gap: 12px;
+  }
+  .stageIems {
+    gap: 12px;
+  }
+  .stagePaRow {
+    justify-content: center;
+    gap: 6px;
+  }
+  .stagePaGroup {
+    gap: 4px;
+  }
+  .stageElement {
+    font-size: 8px;
+    padding: 6px 8px;
+    letter-spacing: 1px;
+  }
+  .seLed {
+    font-size: 8px;
+    padding: 8px;
+  }
+
+  /* Spec table — hide spec col on small screens */
+  .specTable {
+    font-size: 12px;
+  }
+  .specTable th:nth-child(2),
+  .specTable td:nth-child(2) {
+    display: none;
+  }
+  .specTable td:first-child {
+    font-size: 13px;
+    white-space: normal;
+    padding-right: 12px;
+  }
+  .specTable td {
+    padding: 10px 0;
+  }
+
+  /* Sub headers */
+  .subTitleH {
+    font-size: 20px;
+  }
+  .subCount {
+    font-size: 8px;
+    margin-left: 8px;
+  }
+  .subHeader {
+    gap: 10px;
+  }
+
+  /* Team grid */
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Notice */
+  .noticeBox {
+    font-size: 14px;
+    padding: 18px 16px;
+  }
+  .noticeContacts {
+    gap: 12px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  .pageTitle {
+    font-size: clamp(30px, 14vw, 44px);
+  }
+  .htab {
+    font-size: 8px;
+    padding: 5px 10px;
+  }
+  .stagePaGroup {
+    display: none;
+  } /* hide PA arrays on very small screens */
+}

@@ -1,0 +1,422 @@
+/*
+  mahika.module.css — MAHIKA BLUES EPK
+  All CSS variables are namespaced as --mb-* to avoid any clash
+  with the rest of the site's CSS variables.
+  The .mbRoot wrapper fully isolates this page visually.
+*/
+
+.mbRoot {
+  --mb-black: #120c0d;
+  --mb-amber: #e8a15c;
+  --mb-crimson: #c4453f;
+  --mb-cream: #f3e9dc;
+  --mb-dim: #c9b8b0;
+  --mb-line: rgba(243, 233, 220, 0.15);
+  --mb-max: 1080px;
+
+  position: relative;
+  background: var(--mb-black);
+  color: var(--mb-cream);
+  font-family: "Inter", sans-serif;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.mbRoot a {
+  color: inherit;
+}
+.mbRoot h1,
+.mbRoot h2,
+.mbRoot h3 {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mbRoot * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.wrap {
+  max-width: var(--mb-max);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.eyebrow {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--mb-amber);
+}
+
+/* NAV */
+.navBar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(18, 12, 13, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--mb-line);
+}
+.navInner {
+  max-width: var(--mb-max);
+  margin: 0 auto;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navName {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 17px;
+}
+.navLinks {
+  display: flex;
+  gap: 24px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.navLinks a {
+  text-decoration: none;
+  color: var(--mb-dim);
+  transition: color 0.25s;
+}
+.navLinks a:hover,
+.navLinks a:focus-visible {
+  color: var(--mb-amber);
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-bottom: 1px solid var(--mb-line);
+}
+.heroPhoto {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 25%;
+  filter: saturate(1.05) contrast(1.05);
+}
+.heroScrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(18, 12, 13, 0.98) 10%,
+      rgba(18, 12, 13, 0.5) 45%,
+      rgba(18, 12, 13, 0.1) 70%
+    ),
+    linear-gradient(120deg, rgba(196, 69, 63, 0.18), rgba(18, 12, 13, 0.1));
+}
+.heroContent {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-bottom: 60px;
+}
+.heroEyebrow {
+  margin-bottom: 18px;
+  opacity: 0;
+  animation: mbRise 0.8s ease forwards 0.1s;
+}
+.heroTitle {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+  font-style: italic;
+  font-size: clamp(48px, 9vw, 104px);
+  line-height: 0.96;
+  color: var(--mb-cream);
+  opacity: 0;
+  animation: mbRise 0.8s ease forwards 0.22s;
+}
+.heroSub {
+  margin-top: 18px;
+  max-width: 520px;
+  font-size: 16px;
+  color: var(--mb-dim);
+  opacity: 0;
+  animation: mbRise 0.8s ease forwards 0.36s;
+}
+@keyframes mbRise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.genreStrip {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  opacity: 0;
+  animation: mbRise 0.8s ease forwards 0.5s;
+}
+.genrePill {
+  border: 1px solid var(--mb-amber);
+  color: var(--mb-amber);
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sectionPad {
+  padding: 88px 0;
+}
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+.sectionHead h2 {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 30px;
+  color: var(--mb-cream);
+}
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--mb-line);
+}
+
+/* ABOUT */
+.about {
+  border-bottom: 1px solid var(--mb-line);
+}
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 56px;
+  align-items: start;
+}
+.facts {
+  border-top: 1px solid var(--mb-line);
+}
+.factRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--mb-line);
+  font-size: 14.5px;
+}
+.factLabel {
+  color: var(--mb-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+.factValue {
+  text-align: right;
+  font-weight: 600;
+}
+.aboutCopy p {
+  font-size: 16.5px;
+  color: var(--mb-dim);
+  margin: 0 0 18px;
+}
+.aboutCopy strong {
+  color: var(--mb-cream);
+  font-weight: 600;
+}
+
+/* PHOTO BREAK */
+.photoBreak {
+  position: relative;
+  height: 62vh;
+  min-height: 400px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--mb-line);
+}
+.photoBreak img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.05);
+}
+.photoCaption {
+  position: absolute;
+  left: 32px;
+  bottom: 22px;
+  z-index: 2;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--mb-cream);
+  background: rgba(18, 12, 13, 0.55);
+  padding: 8px 14px;
+  backdrop-filter: blur(4px);
+}
+
+/* GALLERY */
+.gallery {
+  border-bottom: 1px solid var(--mb-line);
+}
+.gGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.gGrid img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  border-radius: 2px;
+}
+
+/* SOUND / GENRES */
+.genresCities {
+  border-bottom: 1px solid var(--mb-line);
+}
+.gcGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+.genreList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.tagPill {
+  border: 1px solid var(--mb-line);
+  padding: 9px 16px;
+  font-size: 13.5px;
+  border-radius: 999px;
+  color: var(--mb-dim);
+}
+.noteBlock {
+  font-size: 14.5px;
+  color: var(--mb-dim);
+  border-left: 2px solid var(--mb-crimson);
+  padding-left: 18px;
+}
+
+/* CONTACT */
+.contact {
+  padding-top: 88px;
+  padding-bottom: 60px;
+}
+.contactCard {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(196, 69, 63, 0.14),
+    rgba(18, 12, 13, 0.6)
+  );
+  border: 1px solid var(--mb-line);
+  padding: 56px 48px;
+  text-align: center;
+}
+.contactCard h2 {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 36px;
+  color: var(--mb-cream);
+  margin-bottom: 14px;
+}
+.sub {
+  color: var(--mb-dim);
+  font-size: 14.5px;
+  margin-bottom: 32px;
+}
+.socialRow {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border: 1px solid var(--mb-amber);
+  color: var(--mb-amber);
+  text-decoration: none;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12.5px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.socialBtn:hover,
+.socialBtn:focus-visible {
+  background: var(--mb-amber);
+  color: var(--mb-black);
+}
+
+.footer {
+  padding: 26px 0 44px;
+  text-align: center;
+  color: var(--mb-dim);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.revealIn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 760px) {
+  .wrap {
+    padding: 0 20px;
+  }
+  .aboutGrid,
+  .gcGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .gGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gGrid img {
+    height: 220px;
+  }
+  .navLinks {
+    gap: 14px;
+    font-size: 10.5px;
+  }
+  .contactCard {
+    padding: 40px 22px;
+  }
+}
